@@ -45,6 +45,9 @@ public class VehicleController {
     public ResponseEntity updateVehicle(@PathVariable(value = "rego") String rego, @RequestBody Vehicle vehicleRequest){
       log.info("Inside updateVehicle method of VehicleController");
       Vehicle vehicle = vehicleService.findByVehicleRego(rego);
+      if(vehicle == null){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Vehicle does not exist "+rego);
+      }
       boolean isPersonPresent = true;
       boolean isVehicleRegistered = false;
       if(vehicle.getPersonid() != null) {

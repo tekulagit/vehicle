@@ -35,11 +35,11 @@ public class VehicleDelegate {
 
   public boolean checkPerson(Long personId) {
     log.info("Inside checkPerson method of VehicleDelegate");
+    log.info("Person service URL "+environment.getProperty("spring.person.service.endpoint") + personId+"");
     Person person = restTemplate
         .getForObject(environment.getProperty("spring.person.service.endpoint") + personId+"", Person.class);
-
-      if(person != null && person.getPersonId() != null){
-        log.info("Inside checkPerson method of VehicleDelegate - Person present with ID "+person.getPersonId());
+      if(person != null && person.getPersonid() != null){
+        log.info("Inside checkPerson method of VehicleDelegate - Person present with ID "+person.getPersonid());
         return true;
       }
     return false;

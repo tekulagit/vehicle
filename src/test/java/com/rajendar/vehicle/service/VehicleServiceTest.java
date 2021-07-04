@@ -1,11 +1,11 @@
 package com.rajendar.vehicle.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import com.rajendar.vehicle.entity.Vehicle;
 import com.rajendar.vehicle.repository.VehicleRepository;
+import com.rajendar.vehicle.util.TestConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -50,5 +50,7 @@ class VehicleServiceTest {
 
   @Test
   void findVehicles() {
+    when(vehicleRepository.findAll()).thenReturn(TestConstants.createPersonList());
+    assertThat(vehicleService.findVehicles().size()).isEqualTo(3);
   }
 }
